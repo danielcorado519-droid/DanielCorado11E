@@ -224,3 +224,9 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
   .panel{ padding:24px 20px; }
   .topbar{ padding:16px 20px; }
 }
+.bloque-contenido iframe,
+.bloque-contenido img,
+.bloque-contenido video{
+  display:block;
+  max-width:100%;
+}
