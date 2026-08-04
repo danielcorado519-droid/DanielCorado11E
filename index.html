@@ -1,148 +1,70 @@
-/* ============================================
-   BITÁCORA · Daniel Corado
-   Lógica del menú y navegación
-   ============================================
-   👉 Para agregar/editar el contenido de cada semana,
-   modifica el arreglo SEMANAS de aquí abajo.
-   Cada semana tiene: icono, título, descripción y bloques.
-*/
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora · Daniel Corado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="alien">
 
-const SEMANAS = [
-  {
-    icono: "📁",
-    titulo: "Semana 1",
-    subtitulo: "Introducción",
-    descripcion: "Escribe aquí un resumen de lo visto en la primera semana de clase.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo, apuntes o enlaces de la semana 1." }
-    ]
-  },
-  {
-    icono: "💻",
-    titulo: "Semana 2",
-    subtitulo: "Práctica",
-    descripcion: "Describe la actividad o proyecto trabajado esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 2." }
-    ]
-  },
-  {
-    icono: "⚡",
-    titulo: "Semana 3",
-    subtitulo: "Proyecto",
-    descripcion: "Detalla el avance del proyecto de esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 3." }
-    ]
-  },
-  {
-    icono: "🛠️",
-    titulo: "Semana 4",
-    subtitulo: "Desarrollo",
-    descripcion: "Explica lo construido o investigado en esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 4." }
-    ]
-  },
-  {
-    icono: "🚦",
-    titulo: "Semana 5",
-    subtitulo: "Avance",
-    descripcion: "Registra el progreso de la semana 5.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 5." }
-    ]
-  },
-  {
-    icono: "📡",
-    titulo: "Semana 6",
-    subtitulo: "Exploración",
-    descripcion: "Anota lo aprendido o investigado en esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 6." }
-    ]
-  },
-  {
-    icono: "👁️",
-    titulo: "Semana 7",
-    subtitulo: "Cierre",
-    descripcion: "Resume el cierre de esta etapa del curso.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 7." }
-    ]
-  },
-  {
-    icono: "📝",
-    titulo: "Semana 8",
-    subtitulo: "Examen",
-    descripcion: "Anota aquí notas de repaso o resultados del examen.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 8." }
-    ]
-  }
-];
-
-const listaSemanas   = document.getElementById("listaSemanas");
-const panelContenido = document.getElementById("panelContenido");
-const bienvenida      = document.getElementById("bienvenida");
-const tituloActivo   = document.getElementById("tituloActivo");
-
-let semanaActiva = null;
-
-function construirMenu(){
-  SEMANAS.forEach((semana, indice) => {
-    const boton = document.createElement("button");
-    boton.className = "semana-item";
-    boton.setAttribute("data-indice", indice);
-    boton.innerHTML = `
-      <span class="semana-num">${String(indice + 1).padStart(2, "0")}</span>
-      <span class="semana-icono">${semana.icono}</span>
-      <span class="semana-titulo">${semana.titulo}<small>${semana.subtitulo}</small></span>
-    `;
-    boton.addEventListener("click", () => mostrarSemana(indice));
-    listaSemanas.appendChild(boton);
-  });
-}
-
-function mostrarSemana(indice){
-  semanaActiva = indice;
-  const semana = SEMANAS[indice];
-
-  document.querySelectorAll(".semana-item").forEach((el, i) => {
-    el.classList.toggle("activa", i === indice);
-  });
-
-  tituloActivo.textContent = `${semana.titulo} · ${semana.subtitulo}`;
-
-  const bloquesHTML = semana.bloques.map(b => `
-    <div class="bloque">
-      <h3>${b.titulo}</h3>
-      <p>${b.texto}</p>
+  <!-- ===== BARRA LATERAL ===== -->
+  <aside class="rail">
+    <div class="rail-top">
+      <div class="mascota">
+        <img src="assets/perro.jpg" alt="Mascota perrito alienígena" class="mascota-img">
+        <span class="antena antena-l"></span>
+        <span class="antena antena-r"></span>
+      </div>
+      <h1 class="marca">Bitácora<span>Tecnología</span></h1>
+      <p class="autor">Daniel Corado</p>
     </div>
-  `).join("");
 
-  panelContenido.innerHTML = `
-    <div class="contenido-semana">
-      <span class="etiqueta">${semana.icono} ${semana.titulo}</span>
-      <h2>${semana.subtitulo}</h2>
-      <p class="descripcion">${semana.descripcion}</p>
-      ${bloquesHTML}
+    <nav class="semanas" id="listaSemanas" aria-label="Semanas de la bitácora">
+      <!-- generado por script.js -->
+    </nav>
+
+    <div class="rail-bottom">
+      <p class="pista">Elige una semana para ver su contenido →</p>
     </div>
-  `;
-}
+  </aside>
 
-/* ===== Selector de tema (colores) ===== */
-document.querySelectorAll(".swatch").forEach(boton => {
-  boton.addEventListener("click", () => {
-    document.body.setAttribute("data-theme", boton.getAttribute("data-theme"));
-  });
-});
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <div class="escenario">
 
-/* ===== Modo claro / oscuro ===== */
-const btnModo = document.getElementById("btnModo");
-btnModo.addEventListener("click", () => {
-  document.body.classList.toggle("claro");
-  btnModo.textContent = document.body.classList.contains("claro") ? "☀️" : "🌙";
-});
+    <header class="topbar">
+      <div class="topbar-info">
+        <span class="ojo"></span>
+        <span id="tituloActivo">Selecciona una semana</span>
+      </div>
 
-construirMenu();
+      <div class="selector-tema" role="group" aria-label="Selector de color de tema">
+        <span class="selector-etiqueta">Tema</span>
+        <button class="swatch" data-theme="alien" style="--sw:#A8D24D" title="Verde alien"></button>
+        <button class="swatch" data-theme="cosmico" style="--sw:#6E9CFF" title="Azul cósmico"></button>
+        <button class="swatch" data-theme="plasma" style="--sw:#FF6E9C" title="Rosa plasma"></button>
+        <button class="swatch" data-theme="eclipse" style="--sw:#B78CFF" title="Violeta eclipse"></button>
+      </div>
+    </header>
+
+    <main class="panel" id="panelContenido">
+      <div class="bienvenida" id="bienvenida">
+        <span class="ojo-grande"></span>
+        <h2>👽🐶 ¡Hola! Esta es mi bitácora</h2>
+        <p>Aquí Daniel Corado va a ir guardando el trabajo de la clase de Tecnología, semana a semana. Selecciona una semana en el menú de la izquierda para ver su contenido.</p>
+      </div>
+    </main>
+
+    <footer class="pie">
+      <button id="btnModo" class="pie-btn" title="Cambiar a modo claro">🌙</button>
+      <p class="copy">2026 · Bitácora de Daniel Corado</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
