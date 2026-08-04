@@ -39,7 +39,10 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Video",
-        texto: `<iframe width="100%" height="400" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Video semana 3" style="border:none;border-radius:8px;" allowfullscreen></iframe>`
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="archivos/semana3.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -51,7 +54,10 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Video",
-        texto: `<iframe width="100%" height="400" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Video semana 4" style="border:none;border-radius:8px;" allowfullscreen></iframe>`
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="archivos/semana4.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -63,7 +69,10 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Video",
-        texto: `<iframe width="100%" height="400" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Video semana 5" style="border:none;border-radius:8px;" allowfullscreen></iframe>`
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="archivos/semana5.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -75,7 +84,10 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Video",
-        texto: `<iframe width="100%" height="400" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Video semana 6" style="border:none;border-radius:8px;" allowfullscreen></iframe>`
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="archivos/semana6.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -87,7 +99,10 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Video",
-        texto: `<iframe width="100%" height="400" src="https://www.youtube.com/embed/TU_ID_DE_VIDEO" title="Video semana 7" style="border:none;border-radius:8px;" allowfullscreen></iframe>`
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="archivos/semana7.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -95,4 +110,77 @@ const SEMANAS = [
     icono: "📝",
     titulo: "Semana 8",
     subtitulo: "Examen",
-    descripcion: "Anota aquí
+    descripcion: "Anota aquí notas de repaso o resultados del examen.",
+    bloques: [
+      {
+        titulo: "Contenido",
+        texto: "Sustituye este texto por el trabajo de la semana 8."
+      }
+    ]
+  }
+];
+
+const listaSemanas   = document.getElementById("listaSemanas");
+const panelContenido = document.getElementById("panelContenido");
+const bienvenida      = document.getElementById("bienvenida");
+const tituloActivo   = document.getElementById("tituloActivo");
+
+let semanaActiva = null;
+
+function construirMenu(){
+  SEMANAS.forEach((semana, indice) => {
+    const boton = document.createElement("button");
+    boton.className = "semana-item";
+    boton.setAttribute("data-indice", indice);
+    boton.innerHTML = `
+      <span class="semana-num">${String(indice + 1).padStart(2, "0")}</span>
+      <span class="semana-icono">${semana.icono}</span>
+      <span class="semana-titulo">${semana.titulo}<small>${semana.subtitulo}</small></span>
+    `;
+    boton.addEventListener("click", () => mostrarSemana(indice));
+    listaSemanas.appendChild(boton);
+  });
+}
+
+function mostrarSemana(indice){
+  semanaActiva = indice;
+  const semana = SEMANAS[indice];
+
+  document.querySelectorAll(".semana-item").forEach((el, i) => {
+    el.classList.toggle("activa", i === indice);
+  });
+
+  tituloActivo.textContent = `${semana.titulo} · ${semana.subtitulo}`;
+
+  const bloquesHTML = semana.bloques.map(b => `
+    <div class="bloque">
+      <h3>${b.titulo}</h3>
+      <div class="bloque-contenido">${b.texto}</div>
+    </div>
+  `).join("");
+
+  panelContenido.innerHTML = `
+    <div class="contenido-semana">
+      <span class="etiqueta">${semana.icono} ${semana.titulo}</span>
+      <h2>${semana.subtitulo}</h2>
+      <p class="descripcion">${semana.descripcion}</p>
+      ${bloquesHTML}
+    </div>
+  `;
+}
+
+/* ===== Selector de tema (colores) ===== */
+document.querySelectorAll(".swatch").forEach(boton => {
+  boton.addEventListener("click", () => {
+    document.body.setAttribute("data-theme", boton.getAttribute("data-theme"));
+  });
+});
+
+/* ===== Modo claro / oscuro ===== */
+const btnModo = document.getElementById("btnModo");
+btnModo.addEventListener("click", () => {
+  document.body.classList.toggle("claro");
+  btnModo.textContent = document.body.classList.contains("claro") ? "☀️" : "🌙";
+});
+
+construirMenu();
