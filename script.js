@@ -15,7 +15,7 @@ const SEMANAS = [
     bloques: [
       {
         titulo: "Documento",
-        texto: `<iframe src="archivos/semana1.pdf" width="100%" height="500" style="border:none;border-radius:8px;"></iframe>`
+        texto: `<iframe src="s1.pdf" width="100%" height="500" style="border:none;border-radius:8px;"></iframe>`
       }
     ]
   },
@@ -26,8 +26,11 @@ const SEMANAS = [
     descripcion: "Describe la actividad o proyecto trabajado esta semana.",
     bloques: [
       {
-        titulo: "Imagen",
-        texto: `<img src="archivos/semana2.jpg" alt="Trabajo de la semana 2" style="width:100%;border-radius:8px;">`
+        titulo: "Video",
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="s2.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
       }
     ]
   },
@@ -40,7 +43,7 @@ const SEMANAS = [
       {
         titulo: "Video",
         texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="archivos/semana3.mp4" type="video/mp4">
+          <source src="s3.mp4" type="video/mp4">
           Tu navegador no soporta el video.
         </video>`
       }
@@ -55,7 +58,7 @@ const SEMANAS = [
       {
         titulo: "Video",
         texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="archivos/semana4.mp4" type="video/mp4">
+          <source src="s4.mp4" type="video/mp4">
           Tu navegador no soporta el video.
         </video>`
       }
@@ -70,51 +73,9 @@ const SEMANAS = [
       {
         titulo: "Video",
         texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="archivos/semana5.mp4" type="video/mp4">
+          <source src="s5.mp4" type="video/mp4">
           Tu navegador no soporta el video.
         </video>`
-      }
-    ]
-  },
-  {
-    icono: "📡",
-    titulo: "Semana 6",
-    subtitulo: "Exploración",
-    descripcion: "Anota lo aprendido o investigado en esta semana.",
-    bloques: [
-      {
-        titulo: "Video",
-        texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="archivos/semana6.mp4" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>`
-      }
-    ]
-  },
-  {
-    icono: "👁️",
-    titulo: "Semana 7",
-    subtitulo: "Cierre",
-    descripcion: "Resume el cierre de esta etapa del curso.",
-    bloques: [
-      {
-        titulo: "Video",
-        texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="archivos/semana7.mp4" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>`
-      }
-    ]
-  },
-  {
-    icono: "📝",
-    titulo: "Semana 8",
-    subtitulo: "Examen",
-    descripcion: "Anota aquí notas de repaso o resultados del examen.",
-    bloques: [
-      {
-        titulo: "Contenido",
-        texto: "Sustituye este texto por el trabajo de la semana 8."
       }
     ]
   }
