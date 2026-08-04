@@ -1,148 +1,226 @@
 /* ============================================
    BITÁCORA · Daniel Corado
-   Lógica del menú y navegación
-   ============================================
-   👉 Para agregar/editar el contenido de cada semana,
-   modifica el arreglo SEMANAS de aquí abajo.
-   Cada semana tiene: icono, título, descripción y bloques.
-*/
+   Tema: perrito alienígena
+   ============================================ */
 
-const SEMANAS = [
-  {
-    icono: "📁",
-    titulo: "Semana 1",
-    subtitulo: "Introducción",
-    descripcion: "Escribe aquí un resumen de lo visto en la primera semana de clase.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo, apuntes o enlaces de la semana 1." }
-    ]
-  },
-  {
-    icono: "💻",
-    titulo: "Semana 2",
-    subtitulo: "Práctica",
-    descripcion: "Describe la actividad o proyecto trabajado esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 2." }
-    ]
-  },
-  {
-    icono: "⚡",
-    titulo: "Semana 3",
-    subtitulo: "Proyecto",
-    descripcion: "Detalla el avance del proyecto de esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 3." }
-    ]
-  },
-  {
-    icono: "🛠️",
-    titulo: "Semana 4",
-    subtitulo: "Desarrollo",
-    descripcion: "Explica lo construido o investigado en esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 4." }
-    ]
-  },
-  {
-    icono: "🚦",
-    titulo: "Semana 5",
-    subtitulo: "Avance",
-    descripcion: "Registra el progreso de la semana 5.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 5." }
-    ]
-  },
-  {
-    icono: "📡",
-    titulo: "Semana 6",
-    subtitulo: "Exploración",
-    descripcion: "Anota lo aprendido o investigado en esta semana.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 6." }
-    ]
-  },
-  {
-    icono: "👁️",
-    titulo: "Semana 7",
-    subtitulo: "Cierre",
-    descripcion: "Resume el cierre de esta etapa del curso.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 7." }
-    ]
-  },
-  {
-    icono: "📝",
-    titulo: "Semana 8",
-    subtitulo: "Examen",
-    descripcion: "Anota aquí notas de repaso o resultados del examen.",
-    bloques: [
-      { titulo: "Contenido", texto: "Sustituye este texto por el trabajo de la semana 8." }
-    ]
-  }
-];
-
-const listaSemanas   = document.getElementById("listaSemanas");
-const panelContenido = document.getElementById("panelContenido");
-const bienvenida      = document.getElementById("bienvenida");
-const tituloActivo   = document.getElementById("tituloActivo");
-
-let semanaActiva = null;
-
-function construirMenu(){
-  SEMANAS.forEach((semana, indice) => {
-    const boton = document.createElement("button");
-    boton.className = "semana-item";
-    boton.setAttribute("data-indice", indice);
-    boton.innerHTML = `
-      <span class="semana-num">${String(indice + 1).padStart(2, "0")}</span>
-      <span class="semana-icono">${semana.icono}</span>
-      <span class="semana-titulo">${semana.titulo}<small>${semana.subtitulo}</small></span>
-    `;
-    boton.addEventListener("click", () => mostrarSemana(indice));
-    listaSemanas.appendChild(boton);
-  });
+:root{
+  --bg:        #0B120C;
+  --surface:   #121C13;
+  --surface-2: #182417;
+  --line:      #24361F;
+  --ink:       #EDEFE2;
+  --ink-dim:   #9BAE8E;
+  --accent:    #A8D24D;
+  --accent-2:  #6C9A2E;
+  --glow:      #D7F26B;
+  --pop:       #FF8B5E;
+  --hue:       0deg;
 }
 
-function mostrarSemana(indice){
-  semanaActiva = indice;
-  const semana = SEMANAS[indice];
+/* variantes de tema — solo rotan el matiz del acento y de la imagen */
+body[data-theme="alien"]   { --accent:#A8D24D; --accent-2:#6C9A2E; --glow:#D7F26B; --hue:0deg; }
+body[data-theme="cosmico"] { --accent:#6E9CFF; --accent-2:#3E63C2; --glow:#AFCBFF; --hue:150deg; }
+body[data-theme="plasma"]  { --accent:#FF6E9C; --accent-2:#C23E7E; --glow:#FFB0C9; --hue:270deg; }
+body[data-theme="eclipse"] { --accent:#B78CFF; --accent-2:#7A4FCC; --glow:#DAC4FF; --hue:200deg; }
 
-  document.querySelectorAll(".semana-item").forEach((el, i) => {
-    el.classList.toggle("activa", i === indice);
-  });
-
-  tituloActivo.textContent = `${semana.titulo} · ${semana.subtitulo}`;
-
-  const bloquesHTML = semana.bloques.map(b => `
-    <div class="bloque">
-      <h3>${b.titulo}</h3>
-      <p>${b.texto}</p>
-    </div>
-  `).join("");
-
-  panelContenido.innerHTML = `
-    <div class="contenido-semana">
-      <span class="etiqueta">${semana.icono} ${semana.titulo}</span>
-      <h2>${semana.subtitulo}</h2>
-      <p class="descripcion">${semana.descripcion}</p>
-      ${bloquesHTML}
-    </div>
-  `;
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'IBM Plex Sans', sans-serif;
+  display:grid;
+  grid-template-columns: 272px 1fr;
+  min-height:100vh;
+  transition: background .3s ease;
 }
 
-/* ===== Selector de tema (colores) ===== */
-document.querySelectorAll(".swatch").forEach(boton => {
-  boton.addEventListener("click", () => {
-    document.body.setAttribute("data-theme", boton.getAttribute("data-theme"));
-  });
-});
+body.claro{
+  --bg:#F4F3EC;
+  --surface:#FFFFFF;
+  --surface-2:#ECEAE0;
+  --line:#DAD8CB;
+  --ink:#1B2417;
+  --ink-dim:#5B6A54;
+}
 
-/* ===== Modo claro / oscuro ===== */
-const btnModo = document.getElementById("btnModo");
-btnModo.addEventListener("click", () => {
-  document.body.classList.toggle("claro");
-  btnModo.textContent = document.body.classList.contains("claro") ? "☀️" : "🌙";
-});
+h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
 
-construirMenu();
+/* ===== RAIL / SIDEBAR ===== */
+.rail{
+  background:var(--surface);
+  border-right:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  padding:28px 20px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+}
+
+.rail-top{ text-align:center; margin-bottom:18px; }
+
+.mascota{
+  position:relative;
+  width:104px;
+  height:104px;
+  margin:0 auto 14px;
+}
+.mascota-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:50%;
+  border:3px solid var(--accent);
+  filter: hue-rotate(var(--hue)) saturate(1.05);
+  box-shadow: 0 0 0 6px var(--surface-2), 0 0 24px -6px var(--accent);
+}
+.antena{
+  position:absolute;
+  top:-10px;
+  width:3px;
+  height:20px;
+  background:var(--accent);
+  border-radius:2px;
+}
+.antena::after{
+  content:"";
+  position:absolute;
+  top:-6px; left:50%;
+  transform:translateX(-50%);
+  width:8px; height:8px;
+  background:var(--glow);
+  border-radius:50%;
+  box-shadow:0 0 8px 2px var(--glow);
+}
+.antena-l{ left:28px; transform:rotate(-18deg); }
+.antena-r{ right:28px; transform:rotate(18deg); }
+
+.marca{ font-size:1.15rem; line-height:1.15; color:var(--ink); }
+.marca span{ display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-family:'IBM Plex Mono', monospace; margin-top:2px; }
+.autor{ margin:6px 0 0; font-size:.85rem; color:var(--ink-dim); }
+
+.semanas{ flex:1; display:flex; flex-direction:column; gap:4px; margin-top:10px; }
+
+.semana-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid transparent;
+  background:transparent;
+  color:var(--ink-dim);
+  font-family:'IBM Plex Sans', sans-serif;
+  font-size:.9rem;
+  text-align:left;
+  cursor:pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.semana-item:hover{ background:var(--surface-2); color:var(--ink); }
+.semana-item:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.semana-item.activa{
+  background:var(--surface-2);
+  border-color:var(--line);
+  color:var(--ink);
+}
+.semana-item.activa .semana-num{ color:var(--bg); background:var(--accent); }
+
+.semana-num{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:.72rem;
+  width:26px; height:26px;
+  flex:0 0 auto;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%;
+  border:1px solid var(--line);
+  color:var(--ink-dim);
+}
+.semana-icono{ font-size:1rem; }
+.semana-titulo{ display:flex; flex-direction:column; }
+.semana-titulo small{ color:var(--ink-dim); font-size:.7rem; }
+
+.rail-bottom{ margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+.pista{ font-size:.75rem; color:var(--ink-dim); margin:0; }
+
+/* ===== ESCENARIO / CONTENIDO ===== */
+.escenario{ display:flex; flex-direction:column; min-height:100vh; }
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 32px;
+  border-bottom:1px solid var(--line);
+  gap:16px;
+  flex-wrap:wrap;
+}
+.topbar-info{ display:flex; align-items:center; gap:10px; font-family:'IBM Plex Mono', monospace; font-size:.85rem; color:var(--ink-dim); }
+.ojo{ width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 8px 1px var(--accent); }
+
+.selector-tema{ display:flex; align-items:center; gap:8px; }
+.selector-etiqueta{ font-size:.72rem; color:var(--ink-dim); text-transform:uppercase; letter-spacing:.1em; font-family:'IBM Plex Mono', monospace; margin-right:2px; }
+.swatch{
+  width:20px; height:20px;
+  border-radius:50%;
+  border:2px solid var(--line);
+  background:var(--sw);
+  cursor:pointer;
+  padding:0;
+}
+.swatch:hover{ transform:scale(1.12); }
+.swatch:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+
+.panel{ flex:1; padding:36px 40px; }
+
+.bienvenida{ max-width:560px; }
+.ojo-grande{ display:block; width:16px; height:16px; border-radius:50%; background:var(--accent); box-shadow:0 0 20px 3px var(--accent); margin-bottom:16px; }
+.bienvenida h2{ font-size:1.5rem; margin-bottom:10px; }
+.bienvenida p{ color:var(--ink-dim); line-height:1.6; }
+
+.contenido-semana{ max-width:680px; }
+.contenido-semana .etiqueta{ font-family:'IBM Plex Mono', monospace; font-size:.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:.12em; }
+.contenido-semana h2{ font-size:1.7rem; margin:8px 0 18px; }
+.contenido-semana .descripcion{ color:var(--ink-dim); line-height:1.7; margin-bottom:22px; }
+
+.bloque{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px 22px;
+  margin-bottom:16px;
+}
+.bloque h3{ font-size:1rem; margin-bottom:8px; color:var(--ink); }
+.bloque p{ color:var(--ink-dim); font-size:.92rem; line-height:1.6; margin:0; }
+
+.pie{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 32px;
+  border-top:1px solid var(--line);
+}
+.pie-btn{
+  background:var(--surface-2);
+  border:1px solid var(--line);
+  color:var(--ink);
+  width:34px; height:34px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:.95rem;
+}
+.pie-btn:hover{ border-color:var(--accent); }
+.copy{ font-size:.75rem; color:var(--ink-dim); margin:0; font-family:'IBM Plex Mono', monospace; }
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; }
+}
+
+@media (max-width: 780px){
+  body{ grid-template-columns:1fr; }
+  .rail{ position:relative; height:auto; }
+  .panel{ padding:24px 20px; }
+  .topbar{ padding:16px 20px; }
+}
