@@ -2,16 +2,16 @@
    BITÁCORA · Daniel Corado
    Lógica del menú y navegación
    ============================================
-   👉 Para agregar/editar el contenido de cada semana,
-   modifica el arreglo SEMANAS de aquí abajo.
+   👉 Para agregar/editar el contenido de cada fase,
+   modifica el arreglo FASES de aquí abajo.
 */
 
-const SEMANAS = [
+const FASES = [
   {
     icono: "📁",
-    titulo: "Semana 1",
+    titulo: "Fase 1",
     subtitulo: "Introducción",
-    descripcion: "Escribe aquí un resumen de lo visto en la primera semana de clase.",
+    descripcion: "Escribe aquí un resumen de lo visto en la primera fase de clase.",
     bloques: [
       {
         titulo: "Documento",
@@ -21,9 +21,9 @@ const SEMANAS = [
   },
   {
     icono: "💻",
-    titulo: "Semana 2",
+    titulo: "Fase 2",
     subtitulo: "Práctica",
-    descripcion: "Describe la actividad o proyecto trabajado esta semana.",
+    descripcion: "Describe la actividad o proyecto trabajado en esta fase.",
     bloques: [
       {
         titulo: "Video",
@@ -36,9 +36,9 @@ const SEMANAS = [
   },
   {
     icono: "⚡",
-    titulo: "Semana 3",
+    titulo: "Fase 3",
     subtitulo: "Proyecto",
-    descripcion: "Detalla el avance del proyecto de esta semana.",
+    descripcion: "Detalla el avance del proyecto de esta fase.",
     bloques: [
       {
         titulo: "Video",
@@ -51,9 +51,9 @@ const SEMANAS = [
   },
   {
     icono: "🛠️",
-    titulo: "Semana 4",
+    titulo: "Fase 4",
     subtitulo: "Desarrollo",
-    descripcion: "Explica lo construido o investigado en esta semana.",
+    descripcion: "Explica lo construido o investigado en esta fase.",
     bloques: [
       {
         titulo: "Video",
@@ -66,9 +66,9 @@ const SEMANAS = [
   },
   {
     icono: "🚦",
-    titulo: "Semana 5",
+    titulo: "Fase 5",
     subtitulo: "Avance",
-    descripcion: "Registra el progreso de la semana 5.",
+    descripcion: "Registra el progreso de esta fase.",
     bloques: [
       {
         titulo: "Video",
@@ -81,39 +81,39 @@ const SEMANAS = [
   }
 ];
 
-const listaSemanas   = document.getElementById("listaSemanas");
+const listaFases     = document.getElementById("listaFases");
 const panelContenido = document.getElementById("panelContenido");
 const bienvenida      = document.getElementById("bienvenida");
 const tituloActivo   = document.getElementById("tituloActivo");
 
-let semanaActiva = null;
+let faseActiva = null;
 
 function construirMenu(){
-  SEMANAS.forEach((semana, indice) => {
+  FASES.forEach((fase, indice) => {
     const boton = document.createElement("button");
-    boton.className = "semana-item";
+    boton.className = "fase-item";
     boton.setAttribute("data-indice", indice);
     boton.innerHTML = `
-      <span class="semana-num">${String(indice + 1).padStart(2, "0")}</span>
-      <span class="semana-icono">${semana.icono}</span>
-      <span class="semana-titulo">${semana.titulo}<small>${semana.subtitulo}</small></span>
+      <span class="fase-num">${String(indice + 1).padStart(2, "0")}</span>
+      <span class="fase-icono">${fase.icono}</span>
+      <span class="fase-titulo">${fase.titulo}<small>${fase.subtitulo}</small></span>
     `;
-    boton.addEventListener("click", () => mostrarSemana(indice));
-    listaSemanas.appendChild(boton);
+    boton.addEventListener("click", () => mostrarFase(indice));
+    listaFases.appendChild(boton);
   });
 }
 
-function mostrarSemana(indice){
-  semanaActiva = indice;
-  const semana = SEMANAS[indice];
+function mostrarFase(indice){
+  faseActiva = indice;
+  const fase = FASES[indice];
 
-  document.querySelectorAll(".semana-item").forEach((el, i) => {
+  document.querySelectorAll(".fase-item").forEach((el, i) => {
     el.classList.toggle("activa", i === indice);
   });
 
-  tituloActivo.textContent = `${semana.titulo} · ${semana.subtitulo}`;
+  tituloActivo.textContent = `${fase.titulo} · ${fase.subtitulo}`;
 
-  const bloquesHTML = semana.bloques.map(b => `
+  const bloquesHTML = fase.bloques.map(b => `
     <div class="bloque">
       <h3>${b.titulo}</h3>
       <div class="bloque-contenido">${b.texto}</div>
@@ -121,10 +121,10 @@ function mostrarSemana(indice){
   `).join("");
 
   panelContenido.innerHTML = `
-    <div class="contenido-semana">
-      <span class="etiqueta">${semana.icono} ${semana.titulo}</span>
-      <h2>${semana.subtitulo}</h2>
-      <p class="descripcion">${semana.descripcion}</p>
+    <div class="contenido-fase">
+      <span class="etiqueta">${fase.icono} ${fase.titulo}</span>
+      <h2>${fase.subtitulo}</h2>
+      <p class="descripcion">${fase.descripcion}</p>
       ${bloquesHTML}
     </div>
   `;
