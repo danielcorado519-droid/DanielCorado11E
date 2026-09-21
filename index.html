@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="alien">
+<body data-theme="calabaza">
 
   <!-- ===== BARRA LATERAL ===== -->
   <aside class="rail">
@@ -23,12 +23,12 @@
       <p class="autor">Daniel Corado</p>
     </div>
 
-    <nav class="semanas" id="listaSemanas" aria-label="Semanas de la bitácora">
+    <nav class="fases" id="listaFases" aria-label="Fases de la bitácora">
       <!-- generado por script.js -->
     </nav>
 
     <div class="rail-bottom">
-      <p class="pista">Elige una semana para ver su contenido →</p>
+      <p class="pista">Elige una fase para ver su contenido →</p>
     </div>
   </aside>
 
@@ -38,13 +38,33 @@
     <header class="topbar">
       <div class="topbar-info">
         <span class="ojo"></span>
-        <span id="tituloActivo">Selecciona una semana</span>
+        <span id="tituloActivo">Selecciona una fase</span>
       </div>
 
       <div class="selector-tema" role="group" aria-label="Selector de color de tema">
         <span class="selector-etiqueta">Tema</span>
-        <button class="swatch" data-theme="alien" style="--sw:#A8D24D" title="Verde alien"></button>
-        <button class="swatch" data-theme="cosmico" style="--sw:#6E9CFF" title="Azul cósmico"></button>
-        <button class="swatch" data-theme="plasma" style="--sw:#FF6E9C" title="Rosa plasma"></button>
-        <button class="swatch" data-theme="eclipse" style="--sw:#B78CFF" title="Violeta eclipse"></button>
+        <button class="swatch" data-theme="calabaza" style="--sw:#E07A3F" title="Calabaza"></button>
+        <button class="swatch" data-theme="vino" style="--sw:#A23B3B" title="Vino"></button>
+        <button class="swatch" data-theme="mostaza" style="--sw:#D4A017" title="Mostaza"></button>
+        <button class="swatch" data-theme="bosque" style="--sw:#8B5E34" title="Bosque otoñal"></button>
       </div>
+    </header>
+
+    <main class="panel" id="panelContenido">
+      <div class="bienvenida" id="bienvenida">
+        <span class="ojo-grande"></span>
+        <h2>🍂🐶 ¡Hola! Esta es mi bitácora</h2>
+        <p>Aquí Daniel Corado va a ir guardando el trabajo de la clase de Tecnología, fase a fase. Selecciona una fase en el menú de la izquierda para ver su contenido.</p>
+      </div>
+    </main>
+
+    <footer class="pie">
+      <button id="btnModo" class="pie-btn" title="Cambiar a modo claro">🌙</button>
+      <p class="copy">2026 · Bitácora de Daniel Corado</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
