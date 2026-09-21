@@ -1,27 +1,27 @@
 /* ============================================
    BITÁCORA · Daniel Corado
-   Tema: perrito alienígena
+   Tema: otoñal
    ============================================ */
 
 :root{
-  --bg:        #0B120C;
-  --surface:   #121C13;
-  --surface-2: #182417;
-  --line:      #24361F;
-  --ink:       #EDEFE2;
-  --ink-dim:   #9BAE8E;
-  --accent:    #A8D24D;
-  --accent-2:  #6C9A2E;
-  --glow:      #D7F26B;
-  --pop:       #FF8B5E;
+  --bg:        #241712;
+  --surface:   #2E1D16;
+  --surface-2: #3A2519;
+  --line:      #4A2F1F;
+  --ink:       #F5E6D3;
+  --ink-dim:   #C9A788;
+  --accent:    #E07A3F;
+  --accent-2:  #B85C2C;
+  --glow:      #FFB570;
+  --pop:       #C1440E;
   --hue:       0deg;
 }
 
-/* variantes de tema — solo rotan el matiz del acento y de la imagen */
-body[data-theme="alien"]   { --accent:#A8D24D; --accent-2:#6C9A2E; --glow:#D7F26B; --hue:0deg; }
-body[data-theme="cosmico"] { --accent:#6E9CFF; --accent-2:#3E63C2; --glow:#AFCBFF; --hue:150deg; }
-body[data-theme="plasma"]  { --accent:#FF6E9C; --accent-2:#C23E7E; --glow:#FFB0C9; --hue:270deg; }
-body[data-theme="eclipse"] { --accent:#B78CFF; --accent-2:#7A4FCC; --glow:#DAC4FF; --hue:200deg; }
+/* variantes de tema otoñal */
+body[data-theme="calabaza"] { --accent:#E07A3F; --accent-2:#B85C2C; --glow:#FFB570; --hue:0deg; }
+body[data-theme="vino"]     { --accent:#A23B3B; --accent-2:#7A2727; --glow:#E88888; --hue:320deg; }
+body[data-theme="mostaza"]  { --accent:#D4A017; --accent-2:#A67C00; --glow:#F5D67A; --hue:20deg; }
+body[data-theme="bosque"]   { --accent:#8B5E34; --accent-2:#5E3E1F; --glow:#C9A06B; --hue:340deg; }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
@@ -37,12 +37,12 @@ body{
 }
 
 body.claro{
-  --bg:#F4F3EC;
+  --bg:#FAF3E9;
   --surface:#FFFFFF;
-  --surface-2:#ECEAE0;
-  --line:#DAD8CB;
-  --ink:#1B2417;
-  --ink-dim:#5B6A54;
+  --surface-2:#F1E4D3;
+  --line:#E3CBAA;
+  --ink:#2C1B10;
+  --ink-dim:#7A5A3D;
 }
 
 h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
@@ -102,9 +102,9 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
 .marca span{ display:block; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-family:'IBM Plex Mono', monospace; margin-top:2px; }
 .autor{ margin:6px 0 0; font-size:.85rem; color:var(--ink-dim); }
 
-.semanas{ flex:1; display:flex; flex-direction:column; gap:4px; margin-top:10px; }
+.fases{ flex:1; display:flex; flex-direction:column; gap:4px; margin-top:10px; }
 
-.semana-item{
+.fase-item{
   display:flex;
   align-items:center;
   gap:10px;
@@ -119,16 +119,16 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
   cursor:pointer;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
-.semana-item:hover{ background:var(--surface-2); color:var(--ink); }
-.semana-item:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-.semana-item.activa{
+.fase-item:hover{ background:var(--surface-2); color:var(--ink); }
+.fase-item:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+.fase-item.activa{
   background:var(--surface-2);
   border-color:var(--line);
   color:var(--ink);
 }
-.semana-item.activa .semana-num{ color:var(--bg); background:var(--accent); }
+.fase-item.activa .fase-num{ color:var(--bg); background:var(--accent); }
 
-.semana-num{
+.fase-num{
   font-family:'IBM Plex Mono', monospace;
   font-size:.72rem;
   width:26px; height:26px;
@@ -138,9 +138,9 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
   border:1px solid var(--line);
   color:var(--ink-dim);
 }
-.semana-icono{ font-size:1rem; }
-.semana-titulo{ display:flex; flex-direction:column; }
-.semana-titulo small{ color:var(--ink-dim); font-size:.7rem; }
+.fase-icono{ font-size:1rem; }
+.fase-titulo{ display:flex; flex-direction:column; }
+.fase-titulo small{ color:var(--ink-dim); font-size:.7rem; }
 
 .rail-bottom{ margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
 .pista{ font-size:.75rem; color:var(--ink-dim); margin:0; }
@@ -180,10 +180,10 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
 .bienvenida h2{ font-size:1.5rem; margin-bottom:10px; }
 .bienvenida p{ color:var(--ink-dim); line-height:1.6; }
 
-.contenido-semana{ max-width:680px; }
-.contenido-semana .etiqueta{ font-family:'IBM Plex Mono', monospace; font-size:.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:.12em; }
-.contenido-semana h2{ font-size:1.7rem; margin:8px 0 18px; }
-.contenido-semana .descripcion{ color:var(--ink-dim); line-height:1.7; margin-bottom:22px; }
+.contenido-fase{ max-width:680px; }
+.contenido-fase .etiqueta{ font-family:'IBM Plex Mono', monospace; font-size:.75rem; color:var(--accent); text-transform:uppercase; letter-spacing:.12em; }
+.contenido-fase h2{ font-size:1.7rem; margin:8px 0 18px; }
+.contenido-fase .descripcion{ color:var(--ink-dim); line-height:1.7; margin-bottom:22px; }
 
 .bloque{
   background:var(--surface);
@@ -194,6 +194,13 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
 }
 .bloque h3{ font-size:1rem; margin-bottom:8px; color:var(--ink); }
 .bloque p{ color:var(--ink-dim); font-size:.92rem; line-height:1.6; margin:0; }
+
+.bloque-contenido iframe,
+.bloque-contenido img,
+.bloque-contenido video{
+  display:block;
+  max-width:100%;
+}
 
 .pie{
   display:flex;
@@ -223,10 +230,4 @@ h1,h2,h3{ font-family:'Fredoka', sans-serif; margin:0; }
   .rail{ position:relative; height:auto; }
   .panel{ padding:24px 20px; }
   .topbar{ padding:16px 20px; }
-}
-.bloque-contenido iframe,
-.bloque-contenido img,
-.bloque-contenido video{
-  display:block;
-  max-width:100%;
 }
