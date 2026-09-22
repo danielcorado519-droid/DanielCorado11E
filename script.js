@@ -33,51 +33,6 @@ const FASES = [
         </video>`
       }
     ]
-  },
-  {
-    icono: "⚡",
-    titulo: "Fase 3",
-    subtitulo: "Proyecto",
-    descripcion: "Detalla el avance del proyecto de esta fase.",
-    bloques: [
-      {
-        titulo: "Video",
-        texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="s3.mp4" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>`
-      }
-    ]
-  },
-  {
-    icono: "🛠️",
-    titulo: "Fase 4",
-    subtitulo: "Desarrollo",
-    descripcion: "Explica lo construido o investigado en esta fase.",
-    bloques: [
-      {
-        titulo: "Video",
-        texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="s4.mp4" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>`
-      }
-    ]
-  },
-  {
-    icono: "🚦",
-    titulo: "Fase 5",
-    subtitulo: "Avance",
-    descripcion: "Registra el progreso de esta fase.",
-    bloques: [
-      {
-        titulo: "Video",
-        texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="s5.mp4" type="video/mp4">
-          Tu navegador no soporta el video.
-        </video>`
-      }
-    ]
   }
 ];
 
