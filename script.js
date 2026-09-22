@@ -16,7 +16,7 @@ const FASES = [
       {
         titulo: "Video",
         texto: `<video controls style="width:100%;border-radius:8px;">
-          <source src="video1.webm" type="video/webm">
+          <source src="video1.mp4" type="video/mp4">
           Tu navegador no soporta el video.
         </video>`
       }
