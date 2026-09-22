@@ -14,9 +14,66 @@ const FASES = [
     descripcion: "Escribe aquí un resumen de lo visto en esta fase.",
     bloques: [
       {
+        titulo: "Documento",
+        texto: `<iframe src="s1.pdf" width="100%" height="500" style="border:none;border-radius:8px;"></iframe>`
+      }
+    ]
+  },
+  {
+    icono: "💻",
+    titulo: "Fase 2",
+    subtitulo: "Práctica",
+    descripcion: "Describe la actividad o proyecto trabajado en esta fase.",
+    bloques: [
+      {
         titulo: "Video",
         texto: `<video controls style="width:100%;border-radius:8px;">
           <source src="video1.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
+      }
+    ]
+  },
+  {
+    icono: "⚡",
+    titulo: "Fase 3",
+    subtitulo: "Proyecto",
+    descripcion: "Detalla el avance del proyecto de esta fase.",
+    bloques: [
+      {
+        titulo: "Video",
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="s3.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
+      }
+    ]
+  },
+  {
+    icono: "🛠️",
+    titulo: "Fase 4",
+    subtitulo: "Desarrollo",
+    descripcion: "Explica lo construido o investigado en esta fase.",
+    bloques: [
+      {
+        titulo: "Video",
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="s4.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>`
+      }
+    ]
+  },
+  {
+    icono: "🚦",
+    titulo: "Fase 5",
+    subtitulo: "Avance",
+    descripcion: "Registra el progreso de esta fase.",
+    bloques: [
+      {
+        titulo: "Video",
+        texto: `<video controls style="width:100%;border-radius:8px;">
+          <source src="s5.mp4" type="video/mp4">
           Tu navegador no soporta el video.
         </video>`
       }
